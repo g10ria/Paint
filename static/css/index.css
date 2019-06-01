@@ -1,0 +1,81 @@
+body {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.nav {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: auto;
+  width: 65%;
+  height: 7vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: gainsboro;
+  -webkit-box-flex: 1;
+      -ms-flex: auto;
+          flex: auto;
+}
+
+.nav .nav-option {
+  cursor: pointer;
+  width: 20%;
+  height: 30px;
+  margin: auto;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.nav .nav-option .nav-option-text {
+  margin-top: 3px;
+  font-family: Mukta;
+}
+
+.nav .nav-option:hover {
+  background-color: white;
+}
+
+.canvas-container {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+}
+
+.canvas-container .canvas {
+  margin-top: 25px;
+  width: 70vw;
+  height: 70vh;
+  background-color: blue;
+}
+
+.menu {
+  margin: auto;
+  margin-top: 10px;
+  width: 60%;
+  height: 12vh;
+  background-color: green;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.menu .menu-option {
+  cursor: pointer;
+  margin: auto;
+  background-color: red;
+  height: 80%;
+  width: 10%;
+}
+
+.menu .menu-option .menu-option-icon {
+  height: 105%;
+}
+/*# sourceMappingURL=index.css.map */
