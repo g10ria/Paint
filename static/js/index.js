@@ -1,12 +1,6 @@
 let canvas = document.getElementById("canvas")
 let ctx = canvas.getContext("2d")
 
-const WIDTH = window.innerWidth
-const HEIGHT = window.innerHeight
-const CANVAS_WIDTH = 721
-const CANVAS_OFFSET_X = (WIDTH - CANVAS_WIDTH) / 2
-const CANVAS_OFFSET_Y = 15
-
 // number of pixels in the drawing (configurable)
 let numXPixels = 48
 let numYPixels = 48
@@ -22,11 +16,70 @@ let ycoords = []
 
 let grid = true
 
+let mousedown = false
+let draggedX = []
+let draggedY = []
+
 canvas.addEventListener("click", function (e) {
-   let cX = parseInt((e.clientX - CANVAS_OFFSET_X) / scale)
-   let cY = parseInt((e.clientY - CANVAS_OFFSET_Y) / scale)
+   let cX = xcoord(e.clientX)
+   let cY = ycoord(e.clientY)
 
    addPixel(cX,cY)
+   redraw()
+})
+
+canvas.addEventListener("mousedown", function (e) {
+   let cX = xcoord(e.clientX)
+   let cY = ycoord(e.clientY)
+
+   outline(cX, cY)
+
+   draggedX.push(cX)
+   draggedY.push(cY)
+
+   mousedown = true
+})
+
+canvas.addEventListener("mousemove", function (e) {
+   if (mousedown) {
+      let cX = xcoord(e.clientX)
+      let cY = ycoord(e.clientY)
+
+      draggedX.push(cX) // make this less bad
+      draggedY.push(cY)
+
+      outline(cX, cY)
+   }
+})
+
+document.addEventListener("mouseup", function (e) {
+   mousedown = false
+   if (draggedX.length==0) return
+
+   // clearing duplicates
+   let prevx = draggedX[0]
+   let prevy = draggedY[0]
+   for(let i=1;i<draggedX.length;i++) {
+      let newx = draggedX[i]
+      let newy = draggedY[i]
+      if (newx==prevx && newy==prevy) {
+         draggedX.splice(i,1)
+         draggedY.splice(i,1)
+         i--
+      }  
+      prevx = newx
+      prevy = newy
+   }
+
+   // adding each pixel
+   for(let i=0;i<draggedX.length;i++)
+      addPixel(draggedX[i], draggedY[i])
+
+   // resetting arrays
+   draggedX = []
+   draggedY = []
+
+   redraw()
 })
 
 // for zooming in/out
@@ -45,13 +98,20 @@ function addPixel(x,y) {
    xcoords.push(x)
    ycoords.push(y)
    numPixels++
-   drawPixel(x,y)
 }
 
 function redraw() {
    clearScreen()
    drawAllPixels()
    drawGrid()
+}
+
+function outline(x,y) {
+   ctx.beginPath()
+   ctx.lineWidth = 2
+   ctx.strokeStyle = "#FF0000"
+   ctx.rect(x*scale, y*scale, scale, scale)
+   ctx.stroke()
 }
 
 // draws a pixel at the specified coordinates

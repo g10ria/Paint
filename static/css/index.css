@@ -10,4 +10,8 @@ body {
   margin-top: 15px;
   text-align: center;
 }
+
+.canvas-container #canvas {
+  cursor: pointer;
+}
 /*# sourceMappingURL=index.css.map */

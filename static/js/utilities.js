@@ -24,3 +24,11 @@ function clamp(num, min, max) {
    if (num > max) return max
    return num
 }
+
+function xcoord(rawx) {
+   return parseInt((rawx - CANVAS_OFFSET_X) / scale)
+}
+
+function ycoord(rawy) {
+   return parseInt((rawy - CANVAS_OFFSET_Y) / scale)
+}
