@@ -1,8 +1,11 @@
 let canvas = document.getElementById("canvas")
 let ctx = canvas.getContext("2d")
 
-let width = screen.width
-let height = screen.height
+const WIDTH = window.innerWidth
+const HEIGHT = window.innerHeight
+const CANVAS_WIDTH = 721
+const CANVAS_OFFSET_X = (WIDTH - CANVAS_WIDTH) / 2
+const CANVAS_OFFSET_Y = 15
 
 // number of pixels in the drawing (configurable)
 let numXPixels = 48
@@ -20,8 +23,8 @@ let ycoords = []
 let grid = true
 
 canvas.addEventListener("click", function (e) {
-   let cX = parseInt(e.clientX / scale)
-   let cY = parseInt(e.clientY / scale)
+   let cX = parseInt((e.clientX - CANVAS_OFFSET_X) / scale)
+   let cY = parseInt((e.clientY - CANVAS_OFFSET_Y) / scale)
 
    addPixel(cX,cY)
 })
@@ -31,6 +34,10 @@ canvas.addEventListener("wheel", function (e) { // add a buffer/tick
    // inc/dec according to scroll & clamp result
    scale = clamp((e.deltaY > 0) ? scale - 1 : scale + 1, MIN_SCALE, MAX_SCALE)
    redraw()
+})
+
+window.addEventListener("scroll", function() {
+   this.console.log("ree")
 })
 
 // adds a pixel at the specified coordinates
@@ -58,7 +65,7 @@ function drawAllPixels() {
 }
 
 function clearScreen() {
-   ctx.clearRect(0, 0, width, height)
+   ctx.clearRect(0, 0, 5000, 5000)
 }
 
 // draws the reference grid

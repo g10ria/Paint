@@ -3,9 +3,11 @@ body {
       -ms-flex-pack: center;
           justify-content: center;
   margin: 0;
+  overflow: hidden;
 }
 
 .canvas-container {
+  margin-top: 15px;
   text-align: center;
 }
 /*# sourceMappingURL=index.css.map */
