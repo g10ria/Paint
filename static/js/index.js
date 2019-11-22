@@ -7,8 +7,6 @@ let numYPixels = 48
 
 // variables for scaling
 let scale = 15
-const MIN_SCALE = 10
-const MAX_SCALE = 20
 
 let numPixels = 0
 let xcoords = []
@@ -32,6 +30,8 @@ canvas.addEventListener("mousedown", function (e) {
    let cX = xcoord(e.clientX)
    let cY = ycoord(e.clientY)
 
+   if (cX>numXPixels || cY>numYPixels) return
+
    outline(cX, cY)
 
    draggedX.push(cX)
@@ -53,6 +53,8 @@ canvas.addEventListener("mousemove", function (e) {
 })
 
 document.addEventListener("mouseup", function (e) {
+   if (!mousedown) return
+
    mousedown = false
    if (draggedX.length==0) return
 
@@ -95,6 +97,8 @@ window.addEventListener("scroll", function() {
 
 // adds a pixel at the specified coordinates
 function addPixel(x,y) {
+   if (x>numXPixels || y>numYPixels) return
+
    xcoords.push(x)
    ycoords.push(y)
    numPixels++
@@ -107,6 +111,8 @@ function redraw() {
 }
 
 function outline(x,y) {
+   if (x>numXPixels || y>numYPixels) return
+
    ctx.beginPath()
    ctx.lineWidth = 2
    ctx.strokeStyle = "#FF0000"
