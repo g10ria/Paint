@@ -19,8 +19,11 @@ let ycoords = []
 
 let grid = true
 
-canvas.addEventListener("click", function () {
-   console.log("click")
+canvas.addEventListener("click", function (e) {
+   let cX = parseInt(e.clientX / scale)
+   let cY = parseInt(e.clientY / scale)
+
+   addPixel(cX,cY)
 })
 
 // for zooming in/out
@@ -35,20 +38,27 @@ function addPixel(x,y) {
    xcoords.push(x)
    ycoords.push(y)
    numPixels++
+   drawPixel(x,y)
 }
 
-redraw()
-
 function redraw() {
-   ctx.clearRect(0, 0, width, height)
-   for(let i=0;i<numPixels;i++)
-      drawPixel(xcoords[i],ycoords[i])
+   clearScreen()
+   drawAllPixels()
    drawGrid()
 }
 
 // draws a pixel at the specified coordinates
 function drawPixel(x, y) {
    ctx.fillRect(x * scale, y * scale, scale, scale)
+}
+
+function drawAllPixels() {
+   for (let i = 0; i < numPixels; i++)
+      drawPixel(xcoords[i], ycoords[i])
+}
+
+function clearScreen() {
+   ctx.clearRect(0, 0, width, height)
 }
 
 // draws the reference grid
