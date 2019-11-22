@@ -1,63 +1,8 @@
-
-
 body {
     justify-content: center;
-}
-
-.nav {
-    justify-content: center;
-    margin: auto;
-    width: 65%;
-    height: 7vh;
-    display: flex;
-    background-color: rgb(220, 220, 220);
-    flex: auto;
-    .nav-option {
-        cursor: pointer;
-        width: 20%;
-        height: 30px;
-        margin: auto;
-        text-align: center;
-        vertical-align: middle;
-        .nav-option-text {
-            margin-top: 3px;
-            font-family: Mukta;
-        }
-    }
-    
-    .nav-option:hover {
-        background-color: white;
-    }
+    margin: 0;
 }
 
 .canvas-container {
-    justify-content: center;
-    text-align: center;
-    .canvas {
-        margin-top: 25px;
-        width: 70vw;
-        height: 70vh;
-        background-color: blue;
-    }
-}
-
-.menu {
-    margin: auto;
-    margin-top: 10px;
-    width: 60%;
-    height: 12vh;
-    background-color: green;
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    .menu-option {
-        cursor: pointer;
-        margin: auto;
-        background-color: red;
-        height: 80%;
-        width: 10%;
-        .menu-option-icon {
-            height: 105%;
-        }
-    }
+   text-align: center
 }
